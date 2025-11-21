@@ -2,7 +2,6 @@ import nltk
 import matplotlib.pyplot as plt
 from nltk.corpus import *
 from nltk.probability import FreqDist
-from nltk.corpus import stopwords
 import string
 
 
@@ -15,6 +14,16 @@ fdist = FreqDist(blake)
 top_ten = fdist.most_common(10)
 print("10 найбільш вживаних слів у тексті: ")
 print(top_ten)
+
+words = [item[0] for item in top_ten]
+chastota = [item[1] for item in top_ten]
+
+
+plt.figure(figsize=(12, 6))
+plt.bar(words, chastota, color="blue")
+plt.title('10 найбільш вживаних слів у тексті', fontsize=15)
+plt.xlabel('Слова')
+plt.ylabel('Частота')
 
 stop_words = set(stopwords.words("english"))
 without_stop_words = [word for word in blake if not word in stop_words]
@@ -44,7 +53,7 @@ chastota = [item[1] for item in top_ten]
 
 plt.figure(figsize=(12, 6))
 plt.bar(words, chastota, color="blue")
-plt.title('10 найбільш вживаних слів у тексті без стоп слів та пунктуації)', fontsize=15)
+plt.title('10 найбільш вживаних слів у тексті без стоп слів та пунктуації', fontsize=15)
 plt.xlabel('Слова')
 plt.ylabel('Частота')
 
